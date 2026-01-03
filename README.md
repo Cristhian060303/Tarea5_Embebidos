@@ -143,11 +143,10 @@ Las capturas de simulación (Ejercicios 1, 2 y 4) y la evidencia de pruebas en h
 ## Autor
 
 Cristhian Bastidas
-Asignatura: Sistemas Embebidos  
-Institución: ESPOL
 
 ---
 
 ## Licencia
 
 Proyecto desarrollado con fines académicos.
+
