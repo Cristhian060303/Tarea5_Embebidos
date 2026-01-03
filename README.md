@@ -1,100 +1,45 @@
 
-# Tarea #5 – Sistemas Embebidos  
-===
+Tarea #5 – Sistemas Embebidos  
 
-# \## ESP32 – UART, FreeRTOS y Gestión de Energía
+ESP32 – UART, FreeRTOS y Gestión de Energía
 
-# 
+Este repositorio contiene el desarrollo completo de la \*\*Tarea #5 de la asignatura Sistemas Embebidos\*\*, cuyo objetivo es implementar aplicaciones avanzadas sobre el microcontrolador \*\*ESP32\*\*, integrando comunicación serial UART, ejecución concurrente de tareas mediante \*\*FreeRTOS\*\* y técnicas de \*\*ahorro de energía\*\*, utilizando el entorno de desarrollo \*\*PlatformIO en Visual Studio Code\*\*.
 
-# Este repositorio contiene el desarrollo completo de la \*\*Tarea #5 de la asignatura Sistemas Embebidos\*\*, cuyo objetivo es implementar aplicaciones avanzadas sobre el microcontrolador \*\*ESP32\*\*, integrando comunicación serial UART, ejecución concurrente de tareas mediante \*\*FreeRTOS\*\* y técnicas de \*\*ahorro de energía\*\*, utilizando el entorno de desarrollo \*\*PlatformIO en Visual Studio Code\*\*.
+Estructura del repositorio
+Cada ejercicio se desarrolló como un proyecto independiente:
 
-# 
+├── Ejercicio1\_UART2  
+│   ├── platformio.ini  
+│   └── src/main.c  
+├── Ejercicio2\_FreeRTOS  
+│   ├── platformio.ini  
+│   └── src/main.c  
+├── Ejercicio3\_Energia  
+│   ├── platformio.ini  
+│   └── src/main.c  
+└── Ejercicio4\_UART\_FreeRTOS  
 
-# ---
+Requisitos del entorno
 
-# 
+- Visual Studio Code  
+- PlatformIO IDE  
+- ESP32 Dev Module  
+- Drivers USB del ESP32 (CP210x / CH340)  
+- Extensión Wokwi (opcional, para simulación)  
+- Hardware real ESP32 (obligatorio para Ejercicio 3)
 
-# \## Estructura del repositorio
+Ejercicio 1 – Comunicación Serial Avanzada con UART2
 
-# 
+Descripción:  
 
-# Cada ejercicio se desarrolló como un proyecto independiente:
+Se implementa un sistema de comandos seriales utilizando exclusivamente el puerto \*\*UART2\*\* del ESP32. El sistema recibe comandos de texto desde un terminal serial, los interpreta y ejecuta acciones internas, enviando respuestas estructuradas por el mismo puerto UART.
 
-# 
+Funcionamiento:  
 
-# .
+El ESP32 inicializa el puerto UART2 con baud rate configurable y realiza lecturas no bloqueantes. Cada comando recibido es limpiado de caracteres de fin de línea y comparado con un conjunto de comandos definidos, ejecutando la acción correspondiente.
 
-# ├── Ejercicio1\_UART2  
-
-# │   ├── platformio.ini  
-
-# │   └── src/main.c  
-
-# ├── Ejercicio2\_FreeRTOS  
-
-# │   ├── platformio.ini  
-
-# │   └── src/main.c  
-
-# ├── Ejercicio3\_Energia  
-
-# │   ├── platformio.ini  
-
-# │   └── src/main.c  
-
-# └── Ejercicio4\_UART\_FreeRTOS  
-
-# &nbsp;   ├── platformio.ini  
-
-# &nbsp;   └── src/main.c  
-
-# 
-
-# ---
-
-# 
-
-# \## Requisitos del entorno
-
-# 
-
-# \- Visual Studio Code  
-
-# \- PlatformIO IDE  
-
-# \- ESP32 Dev Module  
-
-# \- Drivers USB del ESP32 (CP210x / CH340)  
-
-# \- Extensión Wokwi (opcional, para simulación)  
-
-# \- Hardware real ESP32 (obligatorio para Ejercicio 3)
-
-# 
-
-# ---
-
-# 
-
-# \## Ejercicio 1 – Comunicación Serial Avanzada con UART2
-
-# 
-
-# Descripción:  
-
-# Se implementa un sistema de comandos seriales utilizando exclusivamente el puerto \*\*UART2\*\* del ESP32. El sistema recibe comandos de texto desde un terminal serial, los interpreta y ejecuta acciones internas, enviando respuestas estructuradas por el mismo puerto UART.
-
-# 
-
-# Funcionamiento:  
-
-# El ESP32 inicializa el puerto UART2 con baud rate configurable y realiza lecturas no bloqueantes. Cada comando recibido es limpiado de caracteres de fin de línea y comparado con un conjunto de comandos definidos, ejecutando la acción correspondiente.
-
-# 
-
-# Comandos soportados:  
-
-# \- status  
+Comandos soportados:  
+ \- status  
 
 # \- led on  
 
@@ -305,6 +250,7 @@
 # 
 
 # Proyecto desarrollado con fines académicos.
+
 
 
 
