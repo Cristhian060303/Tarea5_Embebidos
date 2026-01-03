@@ -1,25 +1,31 @@
+# Tarea #5 – Sistemas Embebidos  
+## ESP32 – UART, FreeRTOS y Gestión de Energía
 
-Tarea #5 – Sistemas Embebidos  
+Este repositorio contiene el desarrollo completo de la **Tarea #5 de la asignatura Sistemas Embebidos**, cuyo objetivo es implementar aplicaciones avanzadas sobre el microcontrolador **ESP32**, integrando comunicación serial UART, ejecución concurrente de tareas mediante **FreeRTOS** y técnicas de **ahorro de energía**, utilizando el entorno de desarrollo **PlatformIO en Visual Studio Code**.
 
-ESP32 – UART, FreeRTOS y Gestión de Energía
+---
 
-Este repositorio contiene el desarrollo completo de la \*\*Tarea #5 de la asignatura Sistemas Embebidos\*\*, cuyo objetivo es implementar aplicaciones avanzadas sobre el microcontrolador \*\*ESP32\*\*, integrando comunicación serial UART, ejecución concurrente de tareas mediante \*\*FreeRTOS\*\* y técnicas de \*\*ahorro de energía\*\*, utilizando el entorno de desarrollo \*\*PlatformIO en Visual Studio Code\*\*.
+## Estructura del repositorio
 
-Estructura del repositorio
 Cada ejercicio se desarrolló como un proyecto independiente:
 
-├── Ejercicio1\_UART2  
+.
+├── Ejercicio1_UART2  
 │   ├── platformio.ini  
 │   └── src/main.c  
-├── Ejercicio2\_FreeRTOS  
+├── Ejercicio2_FreeRTOS  
 │   ├── platformio.ini  
 │   └── src/main.c  
-├── Ejercicio3\_Energia  
+├── Ejercicio3_Energia  
 │   ├── platformio.ini  
 │   └── src/main.c  
-└── Ejercicio4\_UART\_FreeRTOS  
+└── Ejercicio4_UART_FreeRTOS  
+    ├── platformio.ini  
+    └── src/main.c  
 
-Requisitos del entorno
+---
+
+## Requisitos del entorno
 
 - Visual Studio Code  
 - PlatformIO IDE  
@@ -28,229 +34,120 @@ Requisitos del entorno
 - Extensión Wokwi (opcional, para simulación)  
 - Hardware real ESP32 (obligatorio para Ejercicio 3)
 
-Ejercicio 1 – Comunicación Serial Avanzada con UART2
+---
+
+## Ejercicio 1 – Comunicación Serial Avanzada con UART2
 
 Descripción:  
-
-Se implementa un sistema de comandos seriales utilizando exclusivamente el puerto \*\*UART2\*\* del ESP32. El sistema recibe comandos de texto desde un terminal serial, los interpreta y ejecuta acciones internas, enviando respuestas estructuradas por el mismo puerto UART.
+Se implementa un sistema de comandos seriales utilizando exclusivamente el puerto **UART2** del ESP32. El sistema recibe comandos de texto desde un terminal serial, los interpreta y ejecuta acciones internas, enviando respuestas estructuradas por el mismo puerto UART.
 
 Funcionamiento:  
-
 El ESP32 inicializa el puerto UART2 con baud rate configurable y realiza lecturas no bloqueantes. Cada comando recibido es limpiado de caracteres de fin de línea y comparado con un conjunto de comandos definidos, ejecutando la acción correspondiente.
 
 Comandos soportados:  
- \- status  
+- status  
+- led on  
+- led off  
+- info  
+- reset  
 
-# \- led on  
+Simulación:  
+Ejercicio simulado en Wokwi.
 
-# \- led off  
+---
 
-# \- info  
+## Ejercicio 2 – Sistema Multitarea con FreeRTOS
 
-# \- reset  
+Descripción:  
+Se diseña un sistema multitarea utilizando **FreeRTOS**, implementando tres tareas concurrentes con diferentes prioridades y periodos de ejecución.
 
-# 
+Funcionamiento:  
+El sistema se divide en:
+- Una tarea de lectura de un sensor virtual  
+- Una tarea de control de un LED  
+- Una tarea de monitoreo por puerto serial  
 
-# Simulación:  
+Cada tarea se ejecuta de manera concurrente utilizando `xTaskCreate()` y `vTaskDelay()`, demostrando planificación de tareas y evitando bloqueos del sistema.
 
-# Ejercicio simulado en Wokwi.
+Simulación:  
+Ejercicio simulado en Wokwi.
 
-# 
+---
 
-# ---
+## Ejercicio 3 – Ahorro de Energía en el ESP32
 
-# 
+Descripción:  
+Se implementa un sistema de ahorro energético utilizando el modo **Deep Sleep** del ESP32, evaluado exclusivamente en **hardware real**, tal como lo exige la consigna.
 
-# \## Ejercicio 2 – Sistema Multitarea con FreeRTOS
+Funcionamiento:  
+El sistema entra en un estado activo durante un tiempo determinado, enciende un LED y luego entra en modo Deep Sleep. El microcontrolador despierta automáticamente mediante un temporizador RTC y repite el ciclo.
 
-# 
+Simulación:  
+No aplica.  
+Evidencia:  
+Pruebas realizadas en hardware real.
 
-# Descripción:  
+---
 
-# Se diseña un sistema multitarea utilizando \*\*FreeRTOS\*\*, implementando tres tareas concurrentes con diferentes prioridades y periodos de ejecución.
+## Ejercicio 4 – Sistema Integrado UART + FreeRTOS
 
-# 
+Descripción:  
+Se integra la comunicación UART con la ejecución multitarea mediante FreeRTOS, desarrollando un sistema completo y modular.
 
-# Funcionamiento:  
+Funcionamiento:  
+El sistema cuenta con:
+- Una tarea dedicada a la recepción e interpretación de comandos UART  
+- Una tarea para el control del LED  
+- Una tarea de monitoreo del sistema  
 
-# El sistema se divide en:
+Las tareas se ejecutan concurrentemente y comparten variables globales para mantener el estado del sistema.
 
-# \- Una tarea de lectura de un sensor virtual  
+Simulación:  
+Ejercicio simulado en Wokwi.
 
-# \- Una tarea de control de un LED  
+---
 
-# \- Una tarea de monitoreo por puerto serial  
+## Compilación del proyecto
 
-# 
+Desde la carpeta del ejercicio correspondiente:
 
-# Cada tarea se ejecuta de manera concurrente utilizando `xTaskCreate()` y `vTaskDelay()`, demostrando planificación de tareas y evitando bloqueos del sistema.
+pio run
 
-# 
+---
 
-# Simulación:  
+## Carga y ejecución en el ESP32
 
-# Ejercicio simulado en Wokwi.
+pio run -t upload
 
-# 
+Monitor serial:
 
-# ---
+pio device monitor
 
-# 
+---
 
-# \## Ejercicio 3 – Ahorro de Energía en el ESP32
+## Evidencia
 
-# 
+Las capturas de simulación (Ejercicios 1, 2 y 4) y la evidencia de pruebas en hardware real (Ejercicio 3) se incluyen en el documento PDF de entrega.
 
-# Descripción:  
+---
 
-# Se implementa un sistema de ahorro energético utilizando el modo \*\*Deep Sleep\*\* del ESP32, evaluado exclusivamente en \*\*hardware real\*\*, tal como lo exige la consigna.
+## Enlaces a los repositorios
 
-# 
+- Ejercicio 1: https://github.com/Cristhian060303/Tarea5_Embebidos/tree/main/T5E1
+- Ejercicio 2: https://github.com/Cristhian060303/Tarea5_Embebidos/tree/main/T5E2
+- Ejercicio 3: https://github.com/Cristhian060303/Tarea5_Embebidos/tree/main/T5E3  
+- Ejercicio 4: https://github.com/Cristhian060303/Tarea5_Embebidos/tree/main/T5E4
 
-# Funcionamiento:  
+---
 
-# El sistema entra en un estado activo durante un tiempo determinado, enciende un LED y luego entra en modo Deep Sleep. El microcontrolador despierta automáticamente mediante un temporizador RTC y repite el ciclo.
+## Autor
 
-# 
+Cristhian Bastidas
+Asignatura: Sistemas Embebidos  
+Institución: ESPOL
 
-# Simulación:  
+---
 
-# No aplica.  
+## Licencia
 
-# Evidencia:  
-
-# Pruebas realizadas en hardware real.
-
-# 
-
-# ---
-
-# 
-
-# \## Ejercicio 4 – Sistema Integrado UART + FreeRTOS
-
-# 
-
-# Descripción:  
-
-# Se integra la comunicación UART con la ejecución multitarea mediante FreeRTOS, desarrollando un sistema completo y modular.
-
-# 
-
-# Funcionamiento:  
-
-# El sistema cuenta con:
-
-# \- Una tarea dedicada a la recepción e interpretación de comandos UART  
-
-# \- Una tarea para el control del LED  
-
-# \- Una tarea de monitoreo del sistema  
-
-# 
-
-# Las tareas se ejecutan concurrentemente y comparten variables globales para mantener el estado del sistema.
-
-# 
-
-# Simulación:  
-
-# Ejercicio simulado en Wokwi.
-
-# 
-
-# ---
-
-# 
-
-# \## Compilación del proyecto
-
-# 
-
-# Desde la carpeta del ejercicio correspondiente:
-
-# 
-
-# pio run
-
-# 
-
-# ---
-
-# 
-
-# \## Carga y ejecución en el ESP32
-
-# 
-
-# pio run -t upload
-
-# 
-
-# Monitor serial:
-
-# 
-
-# pio device monitor
-
-# 
-
-# ---
-
-# 
-
-# \## Evidencia
-
-# 
-
-# Las capturas de simulación (Ejercicios 1, 2 y 4) y la evidencia de pruebas en hardware real (Ejercicio 3) se incluyen en el documento PDF de entrega.
-
-# 
-
-# ---
-
-# 
-
-# \## Enlaces a los repositorios
-
-# 
-
-# \- Ejercicio 1: pegar enlace aquí  
-
-# \- Ejercicio 2: pegar enlace aquí  
-
-# \- Ejercicio 3: pegar enlace aquí  
-
-# \- Ejercicio 4: pegar enlace aquí  
-
-# 
-
-# ---
-
-# 
-
-# \## Autor
-
-# 
-
-# Nombre del estudiante  
-
-# Asignatura: Sistemas Embebidos  
-
-# Institución: Nombre de la universidad  
-
-# 
-
-# ---
-
-# 
-
-# \## Licencia
-
-# 
-
-# Proyecto desarrollado con fines académicos.
-
-
-
-
+Proyecto desarrollado con fines académicos.
