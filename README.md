@@ -142,12 +142,13 @@ Las capturas de simulación (Ejercicios 1, 2 y 4) y la evidencia de pruebas en h
 
 ## Autor
 
-Cristhian Bastidas
+Cristhian Bastidas - Karla Lopez
 
 ---
 
 ## Licencia
 
 Proyecto desarrollado con fines académicos.
+
 
 
